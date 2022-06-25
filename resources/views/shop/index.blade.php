@@ -20,11 +20,11 @@
 
                             <div class="pt-10">
                                 <fieldset>
-                                    <legend class="block text-sm font-medium text-gray-900">Categories</legend>
+                                    <legend class="block text-lg font-medium text-gray-900">Categories</legend>
                                     <div class="pt-6 space-y-3">
                                         @foreach ($categories as $category)
                                             <div class="flex items-center">
-                                                <a href="{{ route('category-show',$category->slug) }}" class="ml-3 text-sm text-gray-600"> {{ $category->name}} </a>
+                                                <a href="{{ route('category-show',$category->slug) }}" class="ml-3 text-md text-gray-800"> {{ $category->name}} </a>
                                             </div>
                                         @endforeach
                                     </div>
