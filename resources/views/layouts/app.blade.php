@@ -34,6 +34,7 @@
     <main>
         {{ $slot }}
     </main>
+    <x-footer-component/>
 </div>
 <x-notification-component/>
 @livewireScripts

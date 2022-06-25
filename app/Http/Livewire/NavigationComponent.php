@@ -26,7 +26,7 @@ class NavigationComponent extends Component
     }
     public function render(): Factory|View|Application
     {
-        $products=Product::search($this->searchQuery)->get();
-        return view('livewire.navigation-component',compact('products'));
+        /*$products=Product::search($this->searchQuery)->get();*/
+        return view('livewire.navigation-component'/*,compact('products')*/);
     }
 }

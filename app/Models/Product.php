@@ -15,11 +15,10 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Laravel\Scout\Searchable;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory,SoftDeletes,Sluggable,InteractsWithMedia,Searchable;
+    use HasFactory,SoftDeletes,Sluggable,InteractsWithMedia;
 
    public $with=['variations'];
 
@@ -67,20 +66,6 @@ class Product extends Model implements HasMedia
             ->useFallbackUrl(url('/storage/no-product-image-available.png'));
     }
 
-    public function toSearchableArray(): array
-    {
-        return array_merge([
-            'id' => $this->id,
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'price' => $this->pice,
-            'category_ids' => $this->categories->pluck('id')->toArray(),
-        ], $this->variations->groupBy('type')
-            ->mapWithKeys(fn($variation, $key) => [
-                $key => $variation->pluck('name')
-            ])->toArray()
-        );
-    }
 
     public function categories():BelongsToMany
     {
