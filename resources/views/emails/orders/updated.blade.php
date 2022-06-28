@@ -1,11 +1,13 @@
 @component('mail::message')
  # Hello {{ $order->user->name }} ,
 
-The body of your message.
+Your order is now #{{ $order->id }} has been updated please.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => '/login'])
+Login
 @endcomponent
+
+ to see full details.
 
 Thanks,<br>
 {{ config('app.name') }}

@@ -12,8 +12,6 @@
 
                     </div>
                 </li>
-
-
             </ol>
         </nav>
     </div>
@@ -21,7 +19,7 @@
     <main class="max-w-2xl mx-auto px-4 lg:max-w-7xl lg:px-8">
 
 
-        <div class="pt-12 pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+        <div class="pt-12 pb-24 lg:grid lg:grid-cols-4 lg:gap-x-8 xl:grid-cols-4">
 
             <section aria-labelledby="product-heading" class="mt-6 lg:mt-0 lg:col-span-2 xl:col-span-3">
                 <div class="mb-6 pt-4">
