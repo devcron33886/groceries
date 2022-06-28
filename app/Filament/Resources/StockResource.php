@@ -6,6 +6,7 @@ use App\Filament\Resources\StockResource\Pages;
 use App\Filament\Resources\StockResource\RelationManagers;
 use App\Models\Stock;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -17,16 +18,18 @@ class StockResource extends Resource
 {
     protected static ?string $model = Stock::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-line';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('variation_id')
+                Select::make('variation_id')
+                    ->relationship('variation', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('amount')
-                    ->required(),
+                    ->required()
+                    ->integer(),
             ]);
     }
 
@@ -53,14 +56,14 @@ class StockResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,5 +71,5 @@ class StockResource extends Resource
             'create' => Pages\CreateStock::route('/create'),
             'edit' => Pages\EditStock::route('/{record}/edit'),
         ];
-    }    
+    }
 }

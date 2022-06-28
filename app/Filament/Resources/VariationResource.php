@@ -19,6 +19,8 @@ class VariationResource extends Resource
 {
     protected static ?string $model = Variation::class;
 
+    protected static ?string $recordTitleAttribute = 'product.name';
+
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     public static function form(Form $form): Form
@@ -38,8 +40,8 @@ class VariationResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('sku')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('parent_id'),
-                Forms\Components\TextInput::make('order'),
+                Forms\Components\TextInput::make('order')
+                ->integer(),
             ]);
     }
 
@@ -47,19 +49,12 @@ class VariationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('product_id'),
+                Tables\Columns\TextColumn::make('product.name'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('sku'),
 
-                Tables\Columns\TextColumn::make('order'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
             ])
             ->filters([
                 //

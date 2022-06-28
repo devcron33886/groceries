@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
+    protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 

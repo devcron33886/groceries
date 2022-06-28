@@ -6,16 +6,16 @@ use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
+    protected static ?string $recordTitleAttribute = 'user.name';
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -23,13 +23,18 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id'),
-                Forms\Components\TextInput::make('shipping_address_id'),
-                Forms\Components\TextInput::make('shipping_type_id'),
-                Forms\Components\TextInput::make('payment_method_id'),
-                Forms\Components\TextInput::make('uuid')
-                    ->required()
-                    ->maxLength(36),
+                Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->required(),
+                Select::make('shipping_address_id')
+                    ->relationship('shippingAddress', 'address')
+                    ->required(),
+                Select::make('shipping_type_id')
+                    ->relationship('shippingType', 'title')
+                    ->required(),
+                Select::make('payment_method_id')
+                    ->relationship('paymentMethod', 'name')
+                    ->required(),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
@@ -47,25 +52,19 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('shipping_address_id'),
-                Tables\Columns\TextColumn::make('shipping_type_id'),
-                Tables\Columns\TextColumn::make('payment_method_id'),
-                Tables\Columns\TextColumn::make('uuid'),
+                Tables\Columns\TextColumn::make('user.name'),
+                Tables\Columns\TextColumn::make('shippingAddress.address'),
+                Tables\Columns\TextColumn::make('shippingType.title'),
+                Tables\Columns\TextColumn::make('paymentMethod.name'),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('subtotal'),
                 Tables\Columns\TextColumn::make('placed_at')
-                    ->dateTime(),
+                    ->date(),
                 Tables\Columns\TextColumn::make('packaged_at')
-                    ->dateTime(),
+                    ->date(),
                 Tables\Columns\TextColumn::make('shipped_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                    ->date(),
+
             ])
             ->filters([
                 //
@@ -77,20 +76,19 @@ class OrderResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListOrders::route('/'),
-            'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
-    }    
+    }
 }
