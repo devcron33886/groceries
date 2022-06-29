@@ -17,11 +17,13 @@ class VariationFactory extends Factory
      */
     public function definition()
     {
+        $name='Measurement';
+        $type='Bunch Kg Punnet Piece';
         return [
             'product_id'=>$this->faker->numberBetween(1,344),
-            'name'=>$this->faker->name,
-            'price'=>$this->faker->numberBetween(400,20000),
-            'type'=>$this->faker->text,
+            'name'=>$name,
+            'price'=>$this->faker->numberBetween(400,1800),
+            'type'=>$type,
             'sku'=>$this->faker->numberBetween(1111,20000),
             'parent_id'=>null,
             'order'=>1,
