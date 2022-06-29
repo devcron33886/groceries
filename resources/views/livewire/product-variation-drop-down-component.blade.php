@@ -2,7 +2,7 @@
 
     <div class="font-semibold mb-1">
 
-        {{ Str::title($variations->first() ?->type) }}
+        {{ Str::title($variations->first() ?->name) }}
 
     </div>
 
@@ -12,7 +12,7 @@
 
         @foreach($variations as $variation)
             <option value="{{ $variation->id }}" {{ $variation->outOfStock()?'disabled':'' }}>
-                {{ $variation->name }} {{ $variation->lowStock()?'(Low Stock)':'' }}
+                {{ $variation->type }} {{ $variation->lowStock()?'(Low Stock)':'' }}
                 {{ $variation->stockCount()?'(Out of Stock)':'' }}
             </option>
         @endforeach
