@@ -37,7 +37,7 @@ class StockResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('variation_id'),
+                Tables\Columns\TextColumn::make('variation.product.name'),
                 Tables\Columns\TextColumn::make('amount'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
