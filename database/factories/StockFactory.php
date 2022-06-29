@@ -17,7 +17,7 @@ class StockFactory extends Factory
     public function definition()
     {
         return [
-            'variation_id'=>$this->faker->numberBetween(1,344),
+            'variation_id'=>$this->faker->unique()->numberBetween(1,206),
             'amount'=>100,
         ];
     }
