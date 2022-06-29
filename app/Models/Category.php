@@ -20,11 +20,8 @@ class Category extends Model implements HasMedia
     use Sluggable;
     use InteractsWithMedia;
 
-    protected $dates=[
-        'created_at','updated_at','deleted_at'
-    ];
 
-    protected $fillable=['name','slug','parent_id','created_at','updated_at','deleted_at'];
+    protected $fillable=['name','slug'];
 
     public function sluggable(): array
     {
