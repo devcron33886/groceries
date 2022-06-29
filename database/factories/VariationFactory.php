@@ -20,7 +20,7 @@ class VariationFactory extends Factory
         $name='Measurement';
         $type='Bunch Kg Punnet Piece';
         return [
-            'product_id'=>$this->faker->unique()->numberBetween(1,206),
+            'product_id'=>$this->faker->unique()->randomNumber(206),
             'name'=>$name,
             'price'=>$this->faker->numberBetween(400,1800),
             'type'=>$type,
