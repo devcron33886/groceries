@@ -70,7 +70,7 @@
         <div class="pt-8 pb-20 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
 
             <section aria-labelledby="product-heading" class="lg:mt-0 lg:col-span-2 xl:col-span-3">
-                <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Trending products
+                <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Latest products
                 </h2>
 
                 <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-4">
