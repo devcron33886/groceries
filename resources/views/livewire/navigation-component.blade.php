@@ -10,7 +10,7 @@
                         <div class="flex items-center space-x-6">
                             <p class="text-sm font-bold text-white hover:text-gray-100">Tel: +250 789 814 205/+250 785 477 042</p>
                             <p class="text-sm font-bold text-white hover:text-gray-100">WhatsApp: 0728177613</p>
-                            <p class="text-sm font-bold text-white hover:text-gray-100 sm:hidden">Email: frankuwuzuyinema@yahoo.fr</p>
+                            <p class="text-sm font-bold text-white hover:text-gray-100 lg:hidden">Email: frankuwuzuyinema@yahoo.fr</p>
                         </div>
                     </div>
 
