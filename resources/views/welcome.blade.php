@@ -73,7 +73,7 @@
                 <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Latest products
                 </h2>
 
-                <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-6">
+                <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-4">
                     @foreach ($products as $product)
                         <a href="{{ route('product-show', $product->slug) }}"
                             class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
