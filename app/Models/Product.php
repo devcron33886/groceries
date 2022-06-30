@@ -74,6 +74,6 @@ class Product extends Model implements HasMedia
 
     public function scopeLatest($query)
     {
-        return $query->orderBy('created_at','DESC')->take(6);
+        return $query->orderBy('created_at','DESC');
     }
 }
