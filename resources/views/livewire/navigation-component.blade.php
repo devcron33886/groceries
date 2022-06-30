@@ -2,7 +2,7 @@
     <header class="relative z-10">
         <nav aria-label="Top">
             <!-- Top navigation -->
-            <div class="bg-gray-900 sm:hidden">
+            <div class="bg-gray-900">
                 <div class="max-w-7xl mx-auto h-10 px-4 flex items-center justify-between sm:px-6 lg:px-8">
                     <!-- Currency selector -->
                     <div
@@ -10,7 +10,7 @@
                         <div class="flex items-center space-x-6">
                             <p class="text-sm font-bold text-white hover:text-gray-100">Tel: +250 789 814 205/+250 785 477 042</p>
                             <p class="text-sm font-bold text-white hover:text-gray-100">WhatsApp: 0728177613</p>
-                            <p class="text-sm font-bold text-white hover:text-gray-100">Email: frankuwuzuyinema@yahoo.fr</p>
+                            <p class="text-sm font-bold text-white hover:text-gray-100 sm:hidden">Email: frankuwuzuyinema@yahoo.fr</p>
                         </div>
                     </div>
 
