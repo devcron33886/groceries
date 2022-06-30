@@ -79,7 +79,7 @@
                             class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
                             <img src="{{ $product->getFirstMediaUrl() }}" class="w-full">
                             <div class="space-y-1">
-                                <div>{{ $product->name }}</div>
+                                <div>{{ ($product->name) }}</div>
                                 <div class="font-semibold text-lg">
                                     {{ $product->formattedPrice() }}/@foreach ($product->variations as $key => $variation)
                                         {{ $variation->type }}
