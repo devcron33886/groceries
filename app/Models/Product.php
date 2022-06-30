@@ -72,8 +72,8 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Category::class);
     }
 
-    public function scopeLatest($query)
+    public function scopeTrending($query)
     {
-        return $query->orderBy('created_at','DESC');
+        return $query->inRandomOrder()->take(8);
     }
 }
