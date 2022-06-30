@@ -11,8 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class CategoryResource extends Resource
 {
@@ -29,7 +28,7 @@ class CategoryResource extends Resource
                     ->maxLength(255),
                     SpatieMediaLibraryFileUpload::make('image'),
 
-                Forms\Components\TextInput::make('parent_id'),
+                Forms\Components\Toggle::make('status'),
             ]);
     }
 
@@ -38,7 +37,7 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('parent_id'),
+                Tables\Columns\TextColumn::make('status'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
