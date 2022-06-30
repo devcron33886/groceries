@@ -10,11 +10,10 @@
                         <div class="flex items-center space-x-6">
                             <p class="text-sm font-bold text-white hover:text-gray-100">Tel: +250 789 814 205/+250 785 477 042</p>
                             <p class="text-sm font-bold text-white hover:text-gray-100">WhatsApp: 0728177613</p>
-                            <p class="text-sm font-bold text-white hover:text-gray-100 lg:hidden">Email: frankuwuzuyinema@yahoo.fr</p>
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-6 sm:hidden">
+                    <div class="flex items-center space-x-6">
                         @guest
                             <a href="{{ route('login') }}"
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
