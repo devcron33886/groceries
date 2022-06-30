@@ -1,5 +1,5 @@
 <div>
-    <header class="relative z-10">
+    <header class="relative z-10 sm:hidden">
         <nav aria-label="Top">
             <!-- Top navigation -->
             <div class="bg-gray-900">
