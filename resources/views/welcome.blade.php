@@ -58,7 +58,7 @@
                         grows and deliver variety of fresh groceries (fruits, vegetables and herbs) mostly those
                         which were unavailable on Rwandan market before. And mainly we focus on veggies, fruits and
                         herbs with tremendous healthy benefits. By experience gained from our father who was in this
-                        business 26 years the quality of our groceries is guaranteed.</p>
+                        business 40 years the quality of our groceries is guaranteed.</p>
                     <a href="{{ route('shop') }}"
                         class="mt-8 w-full block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto">Shop</a>
                 </div>
@@ -73,7 +73,7 @@
                 <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Trending products
                 </h2>
 
-                <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
+                <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-4">
                     @foreach ($products as $product)
                         <a href="{{ route('product-show', $product->slug) }}"
                             class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
@@ -89,7 +89,10 @@
                         </a>
                     @endforeach
                 </div>
-                {{ $products->links() }}
+                <div class="mt-4">
+                    <a href="{{ route('shop') }}" class="text-indigo-800 font-bold">See all products</a>
+                </div>
+
             </section>
         </div>
     </section>
