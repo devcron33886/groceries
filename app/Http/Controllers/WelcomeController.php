@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     public function __invoke()
     {
         $categories=Category::all();
-        $products=Product::with('variations')->paginate(6);
+        $products=Product::latestProduct()->get();
         return view('welcome',compact('categories','products'));
     }
 }

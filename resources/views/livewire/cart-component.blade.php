@@ -12,7 +12,7 @@
                 </div>
             </section>
 
-            <!-- ListingScope summary -->
+            <!-- LatestProductScope summary -->
             <section aria-labelledby="summary-heading"
                      class="mt-16 bg-gray-50 rounded-lg px-4 py-6 sm:p-6 lg:p-8 lg:mt-0 lg:col-span-5">
                 <h2 id="summary-heading" class="text-lg font-medium text-gray-900">Order summary</h2>

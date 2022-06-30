@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
-class ListingScope implements Scope
+class LatestProductScope implements Scope
 {
 
     /**
@@ -16,6 +16,6 @@ class ListingScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->orderBy('created_at','DESC');
+        $builder->orderBy('created_at','DESC')->limit(12);
     }
 }

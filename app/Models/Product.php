@@ -71,4 +71,9 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('created_at','DESC')->limit(12);
+    }
 }
