@@ -17,12 +17,9 @@
                         @guest
                             <a href="{{ route('login') }}"
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                Login
+                                My Account
                             </a>
-                            <a href="{{ route('register') }}"
-                                class="flex items-center text-sm font-medium text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                Register
-                            </a>
+
                         @endguest
                         @auth
                             <x-dropdown align="right" width="48">
