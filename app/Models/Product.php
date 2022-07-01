@@ -76,4 +76,8 @@ class Product extends Model implements HasMedia
     {
         return $query->inRandomOrder()->take(8);
     }
+    public function scopeMight($query)
+    {
+        return $query->inRandomOrder()->take(4);
+    }
 }
