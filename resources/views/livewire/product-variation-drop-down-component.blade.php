@@ -11,9 +11,9 @@
         <option value="">Choose an Option</option>
 
         @foreach($variations as $variation)
-            <option value="{{ $variation->id }}" {{ $variation->outOfStock()?'disabled':'' }}>
-                {{ $variation->type }} {{ $variation->lowStock()?'(Low Stock)':'' }}
-                {{ $variation->stockCount()?'(Out of Stock)':'' }}
+            <option value="{{ $variation->id }}" {{ $variation->outOfStock() ? 'disabled' : '' }}>
+                {{ $variation->type }} {{ $variation->lowStock() ? '(Low stock)' : '' }} {{ $variation->outOfStock() ? '(Out of stock)' : '' }}
+
             </option>
         @endforeach
 
