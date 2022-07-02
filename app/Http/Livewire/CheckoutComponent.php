@@ -8,10 +8,13 @@ use App\Models\Order;
 use App\Models\PaymentMethod;
 use App\Models\ShippingAddress;
 use App\Models\ShippingType;
+use App\Models\User;
+use App\Notifications\NewOrderNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 
@@ -122,6 +125,8 @@ class CheckoutComponent extends Component
 
         $basket->removeAll();
         Mail::to($order->email)->send(new OrderCreated($order));
+        $users=User::where('role','admin')->get();
+        Notification::send($users,new NewOrderNotification($order));
         $basket->destroy();
 
         if (!auth()->user()) {

@@ -38,6 +38,8 @@ class VariationResource extends Resource
                 Forms\Components\TextInput::make('type')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('parent_id')
+                    ->integer(),
                 Forms\Components\TextInput::make('sku')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('order')

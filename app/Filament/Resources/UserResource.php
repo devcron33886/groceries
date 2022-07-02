@@ -30,11 +30,7 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('role')
-                    ->options([
-                        'admin' => 'Admin',
-                        'client' => 'Client',
-                    ]),
+                Forms\Components\Toggle::make('is_admin'),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
@@ -48,7 +44,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('role'),
+                Tables\Columns\BooleanColumn::make('is_admin'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->date(),
                 Tables\Columns\TextColumn::make('updated_at')
