@@ -3,7 +3,7 @@
         <!-- Decorative image and overlay -->
         <div aria-hidden="true" class="absolute inset-0 overflow-hidden">
             <img src="{{ asset('images/Sliders/1.jpg') }}" alt=""
-                class="w-full h-full object-center object-cover">
+                 class="w-full h-full object-center object-cover">
         </div>
         <div aria-hidden="true" class="absolute inset-0 bg-gray-900 opacity-50"></div>
 
@@ -13,7 +13,7 @@
             </h1>
             <p class="mt-4 text-xl text-white">We are here to serve you the best fresh groceries.</p>
             <a href="{{ route('shop') }}"
-                class="mt-8 inline-block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100">Shop
+               class="mt-8 inline-block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100">Shop
                 New Arrivals
             </a>
         </div>
@@ -28,7 +28,7 @@
         <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-5">
             @foreach ($categories as $category)
                 <a href="{{ route('category-show', $category->slug) }}"
-                    class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
+                   class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
                     <img src="{{ $category->getFirstMediaUrl() }}" class="w-full">
                     <div class="space-y-1">
                         <div class="font-semibold">{{ $category->name }}</div>
@@ -45,7 +45,7 @@
         <div class="relative rounded-lg overflow-hidden">
             <div class="absolute inset-0">
                 <img src="{{ asset('images/Sliders/g14.jpg') }}" alt=""
-                    class="w-full h-full object-center object-cover">
+                     class="w-full h-full object-center object-cover">
             </div>
             <div class="relative bg-gray-900 bg-opacity-75 py-8 px-6 sm:py-40 sm:px-12 lg:px-16">
                 <div class="relative max-w-3xl mx-auto flex flex-col items-center text-center">
@@ -60,44 +60,35 @@
                         herbs with tremendous healthy benefits. By experience gained from our father who was in this
                         business 40 years the quality of our groceries is guaranteed.</p>
                     <a href="{{ route('shop') }}"
-                        class="mt-8 w-full block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto">Shop</a>
+                       class="mt-8 w-full block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto">Shop</a>
                 </div>
             </div>
         </div>
     </section>
     <!-- Featured section -->
-    <section aria-labelledby="comfort-heading" class="max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-        <div class="pt-8 pb-20 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+    <section aria-labelledby="category-heading" class="pt-24 sm:pt-32 xl:max-w-7xl xl:mx-auto xl:px-8">
+        <div class="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
+            <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Latest products
+            </h2>
 
-            <section aria-labelledby="product-heading" class="lg:mt-0 lg:col-span-2 xl:col-span-3">
-                <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Latest products
-                </h2>
-
-                <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-5">
-                    @foreach ($products as $product)
-                        <a href="{{ route('product-show', $product->slug) }}"
-                            class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
-                            <img src="{{ $product->getFirstMediaUrl() }}" class="w-full">
-                            <div class="space-y-1">
-                                <div>{{ ($product->name) }}</div>
-                                <div class="font-semibold text-lg">
-                                    {{ $product->formattedPrice() }}/@foreach ($product->variations as $key => $variation)
-                                        {{ $variation->type }}
-                                    @endforeach
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-                <div class="mt-4">
-                    <a href="{{ route('shop') }}" class="text-indigo-800 font-bold">See all products</a>
-                </div>
-
-            </section>
         </div>
+        <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-5">
+            @foreach ($products as $product)
+                <a href="{{ route('product-show', $product->slug) }}"
+                   class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
+                    <img src="{{ $product->getFirstMediaUrl() }}" class="w-full">
+                    <div class="space-y-1">
+                        <div class="font-semibold">{{ $product->name }}</div>
+
+                    </div>
+                </a>
+            @endforeach
+        </div>
+        <div class="mt-4">
+            <a href="{{ route('shop') }}" class="text-indigo-800 font-bold">See all products</a>
+        </div>
+
     </section>
-
-
 
 
 </x-app-layout>
