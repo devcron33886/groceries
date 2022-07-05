@@ -133,13 +133,7 @@
                     <div>
 
                         <x-application-logo/>
-                        <p class="mt-4 text-sm text-white">
-                            GARDEN OF EDEN PRODUCE is a Rwandan company which organically grows and deliver variety of
-                            fresh groceries (fruits, vegetables and herbs) mostly those which were unavailable on
-                            Rwandan market before. And mainly we focus on veggies, fruits and herbs with tremendous
-                            healthy benefits. By experience gained from our father who was in this business 40 years the
-                            quality of our groceries is guaranteed.
-                        </p>
+
                     </div>
 
 

@@ -26,7 +26,7 @@ class CartItemComponent extends Component
         $this->emit('cart.updated');
 
         $this->dispatchBrowserEvent('notification', [
-            'body' =>$this->variation->product->title.' quantity updated'
+            'body' =>$this->variation->product->name.' quantity updated'
         ]);
     }
 
@@ -37,7 +37,7 @@ class CartItemComponent extends Component
         $this->emit('cart.updated');
 
         $this->dispatchBrowserEvent('notification',[
-            'body'=>$this->variation->product->title.' is removed in the cart.'
+            'body'=>$this->variation->product->name.' is removed in the cart.'
         ]);
     }
 
