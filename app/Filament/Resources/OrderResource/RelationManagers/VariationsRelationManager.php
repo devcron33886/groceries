@@ -28,33 +28,23 @@ class VariationsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('variation.name'),
-                /*Tables\Columns\TextColumn::make('variation.quantity'),*/
+                Tables\Columns\TextColumn::make('name'),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make()
+                //
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
+                Tables\Actions\AssociateAction::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DissociateAction::make(),
                 Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ForceDeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
             ])
             ->bulkActions([
+                Tables\Actions\DissociateBulkAction::make(),
                 Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\RestoreBulkAction::make(),
-                Tables\Actions\ForceDeleteBulkAction::make(),
-            ]);
-    }
-
-    protected function getTableQuery(): Builder
-    {
-        return parent::getTableQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
             ]);
     }
 }
