@@ -125,7 +125,7 @@ class CheckoutComponent extends Component
 
         $basket->removeAll();
         Mail::to($order->email)->send(new OrderCreated($order));
-        $users=User::where('role','admin')->get();
+        $users=User::where('is_admin',1)->get();
         Notification::send($users,new NewOrderNotification($order));
         $basket->destroy();
 
