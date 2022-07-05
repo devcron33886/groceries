@@ -8,7 +8,6 @@
     <main class="max-w-2xl mx-auto px-4 lg:max-w-7xl lg:px-8">
 
 
-
         <div class="pt-12 pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
             <div class="cols-1">
                 <aside>
@@ -24,7 +23,8 @@
                                     <div class="pt-6 space-y-3">
                                         @foreach ($categories as $category)
                                             <div class="flex items-center">
-                                                <a href="{{ route('category-show',$category->slug) }}" class="ml-3 text-md text-gray-800"> {{ $category->name}} </a>
+                                                <a href="{{ route('category-show',$category->slug) }}"
+                                                   class="ml-3 text-md text-gray-800"> {{ $category->name}} </a>
                                             </div>
                                         @endforeach
                                     </div>
@@ -45,12 +45,13 @@
                 <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
                     @foreach ($products as $product)
                         <a href="{{ route('product-show', $product->slug) }}"
-                            class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
+                           class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
                             <img src="{{ $product->getFirstMediaUrl() }}" class="w-full">
                             <div class="space-y-1">
                                 <div class="font-semibold">{{ $product->name }}</div>
                                 <div class="font-semibold text-sm">
-                                    {{ $product->formattedPrice() }}/@foreach ($product->variations as $key => $variation)
+                                    {{ $product->formattedPrice() }}
+                                    /@foreach ($product->variations as $key => $variation)
                                         {{ $variation->type }}
                                     @endforeach
                                 </div>
@@ -58,7 +59,10 @@
                         </a>
                     @endforeach
                 </div>
-                {{ $products->links() }}
+                <div class="mt-4">
+                    {{ $products->links() }}
+                </div>
+
             </section>
         </div>
     </main>
