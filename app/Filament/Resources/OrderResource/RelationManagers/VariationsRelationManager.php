@@ -29,7 +29,7 @@ class VariationsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('variation.name'),
-                Tables\Columns\TextColumn::make('variation.quantity'),
+                /*Tables\Columns\TextColumn::make('variation.quantity'),*/
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make()
