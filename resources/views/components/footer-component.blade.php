@@ -142,7 +142,7 @@
             </div>
 
             <div class="mt-6 lg:mt-0 lg:flex-1">
-                <div class="grid grid-cols-3 gap-6 sm:grid-cols-1 md:grid-cols-3 py-6">
+                <div class="grid grid-cols-3 gap-2 sm:grid-cols-1 md:grid-cols-3 py-6">
                     <div>
                         <h3 class="text-gray-700 uppercase text-white">Categories</h3>
                         @foreach($categories as $category)
@@ -176,7 +176,7 @@
             </div>
         </div>
 
-        <hr class="h-px my-6 bg-gray-300 border-none dark:bg-gray-700">
+        <hr class="h-px my-6 bg-white border-none dark:bg-white">
 
         <div>
             <p class="text-center text-white">© {{ config('app.name') }} {{date('Y')}} - All rights reserved</p>
