@@ -30,6 +30,7 @@ class VariationsRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('product.name'),
                 Tables\Columns\TextColumn::make('quantity'),
+                Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('price'),
             ])
             ->filters([
