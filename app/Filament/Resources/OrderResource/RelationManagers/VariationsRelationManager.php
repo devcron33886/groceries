@@ -28,7 +28,7 @@ class VariationsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('variation.product.name'),
+                Tables\Columns\TextColumn::make('product.name'),
             ])
             ->filters([
                 //
