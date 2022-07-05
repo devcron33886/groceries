@@ -125,14 +125,72 @@
     </div>
 </footer>--}}
 
-<footer class="bg-gray-900 dark:bg-gray-800">
+<footer class="bg-gray-900">
+    <div class="container px-6 py-4 mx-auto">
+        <div class="lg:flex">
+            <div class="w-full -mx-6 lg:w-2/5">
+                <div class="px-6">
+                    <div>
+                        <x-application-logo/>
+                        <p class="max-w-md mt-2 text-white">GARDEN OF EDEN PRODUCE is a Rwandan company which organically
+                            grows and deliver variety of fresh groceries (fruits, vegetables and herbs) mostly those
+                            which were unavailable on Rwandan market before. And mainly we focus on veggies, fruits and
+                            herbs with tremendous healthy benefits. By experience gained from our father who was in this
+                            business 40 years the quality of our groceries is guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 lg:mt-0 lg:flex-1">
+                <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-3">
+                    <div>
+                        <h3 class="text-gray-700 uppercase text-white">Categories</h3>
+                        @foreach($categories as $category)
+                            <a href="{{ route('category-show',$category->slug) }}"
+                               class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                                {{ $category->name }}
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <div>
+                        <h3 class="text-gray-700 uppercase text-white">Our Location</h3>
+                        <a href="#"
+                           class="block mt-2 text-sm text-white hover:underline">KACYIRU- KG549
+                            #2</a>
+                        <a href="#" class="block mt-2 text-sm text-white hover:underline">Kigali
+                            Rwanda</a>
+
+                    </div>
+
+                    <div>
+                        <h3 class="text-gray-700 uppercase text-white">Contact</h3>
+                        <span class="block mt-2 text-sm text-white hover:underline">WhatsApp :(072) 817-7613</span>
+                        <span class="block mt-2 text-sm text-white hover:underline">Call : (078) 547-7042</span>
+                        <span class="block mt-2 text-sm text-white hover:underline">Call :  (078) 492-9046</span>
+                        <span
+                            class="block mt-2 text-sm text-white hover:underline">Email: frankuwuzuyinema@yahoo.fr</span>
+                        <span class="block mt-2 text-sm text-white hover:underline">Email: tumukundebea@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="h-px my-6 bg-gray-300 border-none dark:bg-gray-700">
+
+        <div>
+            <p class="text-center text-white">© {{ config('app.name') }} {{date('Y')}} - All rights reserved</p>
+        </div>
+    </div>
+</footer>
+
+{{--<footer class="bg-gray-900 dark:bg-gray-800">
     <div class="container px-6 py-8 mx-auto">
         <div class="lg:flex">
             <div class="w-full -mx-6 lg:w-2/5">
                 <div class="px-6">
                     <div>
 
-                        <x-application-logo/>
 
                     </div>
 
@@ -168,7 +226,8 @@
                         <span class="block mt-2 text-sm text-white hover:underline">WhatsApp :(072) 817-7613</span>
                         <span class="block mt-2 text-sm text-white hover:underline">Call : (078) 547-7042</span>
                         <span class="block mt-2 text-sm text-white hover:underline">Call :  (078) 492-9046</span>
-                        <span class="block mt-2 text-sm text-white hover:underline">Email: frankuwuzuyinema@yahoo.fr</span>
+                        <span
+                            class="block mt-2 text-sm text-white hover:underline">Email: frankuwuzuyinema@yahoo.fr</span>
                         <span class="block mt-2 text-sm text-white hover:underline">Email: tumukundebea@gmail.com</span>
                     </div>
                 </div>
@@ -181,4 +240,4 @@
             <p class="text-center text-white">© {{ config('app.name') }} {{ date('Y') }} - All rights reserved</p>
         </div>
     </div>
-</footer>
+</footer>--}}
