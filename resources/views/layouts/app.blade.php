@@ -15,6 +15,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 
     @livewireStyles
 </head>
