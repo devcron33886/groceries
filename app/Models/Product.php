@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Scopes\LiveScope;
-use App\Models\Traits\Search;
 use Cknow\Money\Money;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +18,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory,SoftDeletes,Sluggable,InteractsWithMedia,Search;
+    use HasFactory,SoftDeletes,Sluggable,InteractsWithMedia;
 
    public $with=['variations'];
 
