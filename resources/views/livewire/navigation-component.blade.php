@@ -181,5 +181,8 @@
                 <a href="" class="inline-block text-indigo-500 mt-6" wire:click="clearSearch">Clear Search</a>
             </div>
         @endif
+        <div class="px-4 mt-4">
+            {{$products->links()}}
+        </div>
     </nav>
 </div>
