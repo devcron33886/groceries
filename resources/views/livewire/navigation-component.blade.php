@@ -160,7 +160,7 @@
 
             </div>
         </div>
-        {{-- @if ($searchQuery)
+         @if ($searchQuery)
             <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div class="grid grid-cols-2 column-gap-6">
                     @forelse ($products as $product)
@@ -181,8 +181,5 @@
                 <a href="" class="inline-block text-indigo-500 mt-6" wire:click="clearSearch">Clear Search</a>
             </div>
         @endif
-        <div class="px-4 mt-4">
-            {{$products->links()}}
-        </div> --}}
     </nav>
 </div>
