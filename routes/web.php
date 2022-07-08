@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,11 @@ Route::get('/orders/{order:uuid}/confirmation',\App\Http\Controllers\OrderConfir
 Route::get('/shop',ShopController::class)->name('shop');
 Route::get('/contact-us',ContactUsController::class)->name('contact');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function (Request $request) {
+    $orders=$request->user()->orders()->latest()
+            ->with('variations.product','variations.media','variations.ancestorsAndSelf','shippingtype')
+            ->get();
+    return view('dashboard',compact('orders'));
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

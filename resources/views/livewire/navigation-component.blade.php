@@ -18,7 +18,11 @@
                         @guest
                             <a href="{{ route('login') }}"
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                My Account
+                                Login
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="flex items-center text-sm font-medium text-white hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                               Register
                             </a>
 
                         @endguest
@@ -109,6 +113,9 @@
                             class="ml-2 text-sm font-medium text-red-600">{{ $this->basket->contentsCount() }}</span>
 
                     </a>
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Register/Login') }}
+                    </x-nav-link>
                 </div>
 
                 <!-- Hamburger -->
