@@ -6,9 +6,9 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white">
-                <div class="flow-root">
+        <div class="max-w-7xl bg-white mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden  sm:rounded-lg space-y-3">
+                <div class="flow-root py-6">
                     <ul role="list" class="-mb-8">
                         <li>
                             <div class="relative pb-8">
@@ -152,3 +152,4 @@
         </div>
     </div>
 </x-app-layout>
+
