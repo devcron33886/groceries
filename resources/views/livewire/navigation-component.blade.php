@@ -92,6 +92,9 @@
                         <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                             {{ __('Contact us') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('guidelines')" :active="request()->routeIs('guidelines')">
+                            {{ __('Guidelines') }}
+                        </x-nav-link>
 
                     </div>
                 </div>
