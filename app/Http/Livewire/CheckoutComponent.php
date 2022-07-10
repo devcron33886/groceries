@@ -103,8 +103,7 @@ class CheckoutComponent extends Component
             ->associate(auth()->user())
             ->save();
 
-        $order = Order::make(array_merge($this->accountForm, ['subtotal' => $basket->subtotal()
-        ]));
+        $order = Order::make(array_merge($this->accountForm, ['subtotal' => $basket->subTotal() + $this->shippingType->price]));
 
 
         $order->user()->associate(auth()->user());
