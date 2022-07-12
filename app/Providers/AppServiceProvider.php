@@ -23,18 +23,18 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Collection::macro('recursive',function(){
             return $this->map(function($value){
-                 if(is_array($value) || is_object($value))
-                 {
-                     return collect($value)->recursive();
-                 }
-                 return $value;
-             });
+                if(is_array($value) || is_object($value))
+                {
+                    return collect($value)->recursive();
+                }
+                return $value;
+            });
 
-         });
-         Paginator::useTailwind();
+        });
+        Paginator::useTailwind();
     }
 }

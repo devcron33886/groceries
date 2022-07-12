@@ -25,7 +25,7 @@ class AttachOrders
      * @param Registered $event
      * @return void
      */
-    public function handle(Registered $event): void
+    public function handle(Registered $event)
     {
         Order::where('email', $event->user->email)->get()->each(function ($order) use ($event) {
             $order->user()->associate($event->user);

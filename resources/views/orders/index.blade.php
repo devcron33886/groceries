@@ -14,13 +14,36 @@
                             <div>#{{ $order->id }}</div>
                             <div>RWF {{ number_format( $order->subtotal) }}</div>
                             <div>{{ $order->shippingtype->title }}</div>
-                            <div>{{ $order->placed_at->toDateTimeString() }}</div>
+                            <div>{{ $order->created_at->toDateTimeString() }}</div>
                             <div>{{ $order->paymentMethod->name }}</div>
                             <div>
-                                <span
-                                    class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-green-500 text-white">
-                                    {{ $order->presenter()->status() }}
+                                @if($order->status=='Placed')
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-yellow-500 text-white">
+                                    Order Placed
                                 </span>
+                                @elseif($order->status=='Processing')
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-slate-500 text-white">
+                                    Processing
+                                </span>
+                                @elseif($order->status == 'Order is on Way')
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-indigo-500 text-white">
+                                    Order is on way
+                                </span>
+                                @elseif($order->status == 'Delivered')
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-emerald-500 text-white">
+                                    Order is Delivered
+                                </span>
+                                @elseif($order->status == 'Paid')
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-green-500 text-white">
+                                    Order is Paid
+                                </span>
+                                @endif
+
                             </div>
                         </div>
                         @foreach($order->variations as $variation)

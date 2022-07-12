@@ -2,16 +2,23 @@
 
 namespace App\Models;
 
+use \DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ShippingType extends Model
 {
-    use HasFactory,SoftDeletes;
+    use SoftDeletes;
+    use HasFactory;
 
-    protected $table='shipping_types';
+    public $table = 'shipping_types';
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     protected $fillable = [
         'title',
@@ -21,5 +28,8 @@ class ShippingType extends Model
         'deleted_at',
     ];
 
-
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }

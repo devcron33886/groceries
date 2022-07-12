@@ -2,25 +2,21 @@
 
 namespace App\Providers;
 
-use App\Listeners\AttachOrders;
-use App\Models\Order;
-use App\Observers\OrderObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
     /**
-     * The event to listener mappings for the application.
+     * The event listener mappings for the application.
      *
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            AttachOrders::class,
         ],
     ];
 
@@ -29,9 +25,9 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(): void
+    public function boot()
     {
-        Order::observe(OrderObserver::class);
+        //
     }
 
     /**
@@ -39,7 +35,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return bool
      */
-    public function shouldDiscoverEvents(): bool
+    public function shouldDiscoverEvents()
     {
         return false;
     }

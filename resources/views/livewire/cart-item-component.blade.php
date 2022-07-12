@@ -9,15 +9,15 @@
             <div>
                 <div class="flex justify-between">
                     <h3 class="text-sm">
-                        <a href="{{ route('product-show',$variation->product->name) }}"
+                        <a href="{{ route('product-show',$variation->product->slug) }}"
                            class="font-medium text-gray-700 hover:text-gray-800"> {{ $variation->product->name }}
                         </a>
                     </h3>
                 </div>
                 <div class="mt-1 flex text-md">
-                    <p class="text-gray-500">{{ $variation->product->name }}</p>
+                    <p class="text-gray-500">{{ $variation->product->type }}</p>
                     @foreach($variation->ancestorsAndSelf->reverse() as $ancestor)
-                        <p class="ml-4 pl-4 border-l border-gray-200 text-gray-500">{{ $ancestor->name }} @if(!$loop->last)<span class="text-gray-400 mx-1">/</span> @endif</p>
+                        <p class="ml-4 pl-4 border-l border-gray-200 text-gray-500">{{ $ancestor->type }} @if(!$loop->last)<span class="text-gray-400 mx-1">/</span> @endif</p>
                     @endforeach
                 </div>
                 <p class="mt-1 text-sm font-medium text-gray-900"> {{ $variation->formattedPrice() }}</p>
@@ -47,15 +47,5 @@
                 </div>
             </div>
         </div>
-
-        <p class="mt-4 flex text-sm text-gray-700 space-x-2">
-            <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-            </svg>
-            <span>In stock</span>
-        </p>
     </div>
 </li>

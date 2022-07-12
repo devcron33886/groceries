@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,8 +12,10 @@ use Illuminate\Support\Str;
 
 class Cart extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
+    use HasFactory;
 
+    public $table = 'carts';
 
     public static function booted()
     {
@@ -32,5 +35,10 @@ class Cart extends Model
         return $this->belongsToMany(Variation::class)
             ->withPivot('quantity')
             ->orderBy('id');
+    }
+
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 }

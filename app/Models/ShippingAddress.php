@@ -35,7 +35,7 @@ class ShippingAddress extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function parment_method() :BelongsTo
+    public function payment_method() :BelongsTo
     {
         return $this->belongsTo(PaymentMethod::class);
     }

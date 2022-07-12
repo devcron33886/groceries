@@ -46,21 +46,10 @@ class NewOrderNotification extends Notification
         return (new MailMessage)
             ->subject('New order',)
             ->greeting('Hello there is a new order need a review')
-            ->line('New order by'.$this->order->user->name.' has order number #ORD'.$this->order->id)
-            ->action('Review the order here', url('/admin/orders/'))
-            ->line('Thank you for shopping with us!');
+            ->line('New order by '.$this->order->user->name.' which has order number '.$this->order->series->name.'-'.str_pad($this->order->order_number,5,'0',STR_PAD_LEFT))
+            ->action('Review the order here', url('/admin/orders/{{ $this->order->id}}'))
+            ->line('Thank you')
+            ->line(config('app.name') . ' Team');
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return array
-     */
-    public function toArray(mixed $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
 }

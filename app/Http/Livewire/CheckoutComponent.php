@@ -10,6 +10,7 @@ use App\Models\ShippingAddress;
 use App\Models\ShippingType;
 use App\Models\User;
 use App\Notifications\NewOrderNotification;
+use App\Notifications\OrderPlacedNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -123,8 +124,8 @@ class CheckoutComponent extends Component
         });
 
         $basket->removeAll();
-        Mail::to($order->email)->send(new OrderCreated($order));
-        $users=User::where('is_admin',1)->get();
+        Notification::send($order->email, new OrderPlacedNotification($order));
+        $users = User::whereHas('roles', function ($q) { return $q->where('title', 'Admin'); })->get();
         Notification::send($users,new NewOrderNotification($order));
         $basket->destroy();
 

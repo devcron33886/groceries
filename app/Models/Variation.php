@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Observers\VariationActionObserver;
 use Cknow\Money\Money;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -17,23 +18,77 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Variation extends Model implements HasMedia
 {
-    use HasFactory,SoftDeletes,HasRecursiveRelationships,InteractsWithMedia;
+    use SoftDeletes;
+    use InteractsWithMedia;
+    use HasFactory;
+    use HasRecursiveRelationships;
 
+    public $table = 'variations';
+
+    protected $appends = [
+        'variation_image',
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     protected $fillable = [
         'product_id',
         'name',
-        'price',
         'type',
+        'price',
         'sku',
-        'parent_id',
         'order',
-
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        Variation::observe(new VariationActionObserver());
+    }
+
+    /**
+     * @throws InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 250, 250);
+        $this->addMediaConversion('preview')->fit('crop', 600, 600);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')
+            ->useFallbackUrl(url('/storage/no-product-image-available.png'));
+    }
+
+
+    public function getVariationImageAttribute()
+    {
+        $file = $this->getMedia('variation_image')->last();
+        if ($file) {
+            $file->url = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function inStock(): bool
@@ -45,9 +100,10 @@ class Variation extends Model implements HasMedia
     {
         return !$this->inStock();
     }
+
     public function lowStock(): bool
     {
-        return !$this->outOfStock() && $this->stockCount()<=5;
+        return !$this->outOfStock() && $this->stockCount() <= 5;
     }
 
     public function stockCount()
@@ -64,20 +120,4 @@ class Variation extends Model implements HasMedia
     {
         return Money::RWF($this->price);
     }
-
-    /**
-     * @throws InvalidManipulation
-     */
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb250X250')
-            ->fit(Manipulations::FIT_CROP, 250, 250);
-    }
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('default')
-            ->useFallbackUrl(url('/storage/no-product-image-available.png'));
-    }
-
 }

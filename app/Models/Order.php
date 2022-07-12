@@ -2,65 +2,76 @@
 
 namespace App\Models;
 
-use App\Models\Presenters\OrderPresenter;
+use App\Notifications\OrderStatusNotification;
+use App\Observers\OrderActionObserver;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class Order extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
+    use HasFactory;
 
-    public $timestamps = [
-
-        'placed_at',
-        'packaged_at',
-        'shipped_at'
+    public const STATUS_SELECT = [
+        'Order placed' => 'Order Placed',
+        'Processing' => 'Processing',
+        'Order is on Way' => 'Order is on Way',
+        'Delivered' => 'Delivered',
+        'Paid' => 'Paid',
     ];
+
+    public $table = 'orders';
 
     protected $dates = [
-        'placed_at',
-        'packaged_at',
-        'shipped_at'
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
+
     protected $fillable = [
+        'order_number',
+        'user_id',
+        'shipping_address_id',
+        'shipping_type_id',
+        'payment_method_id',
         'email',
         'subtotal',
-        'placed_at',
-        'packaged_at',
-        'shipped_at',
+        'status',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
-
-    protected $casts = [
-        'placed_at' => 'datetime',
-        'packaged_at' => 'datetime',
-        'shipped_at' => 'datetime'
-    ];
-
-    public array $statuses = [
-        'placed_at',
-        'packaged_at',
-        'shipped_at'
-    ];
-
 
     public static function booted()
     {
         static::creating(function (Order $order) {
-            $order->placed_at = now();
-
             $order->uuid = (string)Str::uuid();
         });
     }
 
-    public function status()
+    public static function booting()
     {
-        return collect($this->statuses)
-            ->last(fn($status) => filled($this->{$status}));
+        self::updated(function (Order $order) {
+            if ($order->isDirty('status') && in_array($order->status, ['Order placed', 'Processing', 'Order is on Way', 'Delivered', 'Paid'])) {
+                Notification::route('mail', $order->email)->notify(new OrderStatusNotification($order->status));
+            }
+        });
+    }
 
+    public static function boot()
+    {
+        parent::boot();
+        Order::observe(new OrderActionObserver());
+        
+        static::creating(function ($model){
+            $model->order_number=Order::where('series_id',$model->series_id)->max('order_number')+1;
+        });
     }
 
     public function user(): BelongsTo
@@ -77,7 +88,8 @@ class Order extends Model
     {
         return $this->belongsTo(ShippingAddress::class);
     }
-    public function paymentMethod():BelongsTo
+
+    public function paymentMethod(): BelongsTo
     {
         return $this->belongsTo(PaymentMethod::class);
     }
@@ -89,8 +101,13 @@ class Order extends Model
             ->withTimestamps();
     }
 
-    public function presenter(): OrderPresenter
+    protected function serializeDate(DateTimeInterface $date): string
     {
-        return new OrderPresenter($this);
+        return $date->format('Y-m-d H:i:s');
     }
+    public function series(): BelongsTo
+    {
+        return $this->belongsTo(Series::class,'series_id');
+    }
+
 }
